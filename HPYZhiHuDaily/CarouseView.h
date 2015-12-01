@@ -16,8 +16,6 @@
 
 @interface CarouseView : UIView
 
-@property(strong,nonatomic)UIScrollView *scrollView;
-@property(strong,nonatomic)UIPageControl *pageControl;
 @property(strong,nonatomic)NSArray *topStories;
 @property(weak,nonatomic) id<CarouseViewDelegate> delegate;
 

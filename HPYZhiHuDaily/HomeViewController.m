@@ -13,7 +13,6 @@
 #import "StoryContentViewController.h"
 #import "StoryContentViewModel.h"
 #import "CarouseView.h"
-#import "TopStoryView.h"
 #import "RefreshView.h"
 
 #define kRowHeight 88.f
@@ -147,6 +146,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     if ([scrollView isEqual:_mainTableView]) {
+        //下拉刷新和navBar的background渐变
         CGFloat offSetY = scrollView.contentOffset.y;
         if (offSetY<=0&&offSetY>=-80) {
             if (-offSetY<=40) {
@@ -174,6 +174,7 @@
             _navBarBackgroundView.backgroundColor = [UIColor colorWithRed:60.f/255.f green:198.f/255.f blue:253.f/255.f alpha:offSetY/(220.f-56.f)];
         }
         
+        //上拉刷新
         if (offSetY + kRowHeight > scrollView.contentSize.height - kScreenHeight) {
             if (!_viewmodel.isLoading) {
                 [_viewmodel getPreviousStories];

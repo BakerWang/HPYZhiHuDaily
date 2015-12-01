@@ -12,11 +12,13 @@
 
 @interface CarouseView()<UIScrollViewDelegate>
 
+@property(strong,nonatomic)UIScrollView *scrollView;
+@property(strong,nonatomic)UIPageControl *pageControl;
+@property(strong,nonatomic)NSTimer *timer;
+
 @end
 
-@implementation CarouseView {
-    NSTimer *timer;
-}
+@implementation CarouseView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -48,7 +50,7 @@
 }
 
 - (void)setTopStories:(NSArray *)topStories {
-    [timer invalidate];
+    [_timer invalidate];
     _pageControl.numberOfPages = topStories.count-2;
     _pageControl.currentPage = 0;
     for (int i = 0 ; i < topStories.count; i++) {
@@ -62,7 +64,7 @@
         tsv.label.attributedText = attStr;
         
     }
-    timer = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(nextStoryDisplay) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(nextStoryDisplay) userInfo:nil repeats:YES];
 }
 
 - (void)nextStoryDisplay {
@@ -83,6 +85,11 @@
         }
     }
 }
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [_timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:5.0]];
+}
+
 
 - (void)updateSubViewsOriginY:(CGFloat)value {
     [_pageControl setBottom:260-value/2];
