@@ -27,7 +27,7 @@
 - (instancetype)initWithViewModel:(StoryContentViewModel *)vm {
     self = [super init];
     if (self) {
-        self.viewmodel = vm;
+        _viewmodel = vm;
         [_viewmodel addObserver:self forKeyPath:@"storyModel" options:NSKeyValueObservingOptionNew context:nil];
         [_viewmodel getStoryContentWithStoryID:_viewmodel.loadedStoryID];
     }

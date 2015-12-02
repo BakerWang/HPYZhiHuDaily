@@ -25,7 +25,6 @@
     if (self) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.f, 0.f, kScreenWidth, 300.f)];
         _scrollView.contentSize = CGSizeMake(kScreenWidth*7, 0);
-        _scrollView.contentOffset = CGPointMake(kScreenWidth, 0);
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator = NO;
@@ -52,6 +51,7 @@
 - (void)setTopStories:(NSArray *)topStories {
     [_timer invalidate];
     _pageControl.numberOfPages = topStories.count-2;
+    _scrollView.contentOffset = CGPointMake(kScreenWidth, 0);
     _pageControl.currentPage = 0;
     for (int i = 0 ; i < topStories.count; i++) {
         TopStoryView *tsv = [_scrollView viewWithTag:(100+i)];
@@ -62,7 +62,6 @@
         tsv.label.frame = CGRectMake(15, 0, kScreenWidth-30, size.height);
         [tsv.label setBottom:240];
         tsv.label.attributedText = attStr;
-        
     }
     _timer = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(nextStoryDisplay) userInfo:nil repeats:YES];
 }

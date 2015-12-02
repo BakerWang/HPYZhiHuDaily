@@ -11,8 +11,8 @@
 @class StoryModel;
 @interface HomeViewModel : NSObject
 
-@property(strong,nonatomic)NSMutableArray *daysDataList;
-@property(strong,nonatomic)NSMutableArray *top_stories;
+@property(strong,readonly,nonatomic)NSMutableArray *daysDataList;
+@property(strong,readonly,nonatomic)NSMutableArray *top_stories;
 @property(assign,readonly,nonatomic)BOOL isLoading;
 @property(strong,readonly,nonatomic)NSMutableArray *storiesID;
 

@@ -39,6 +39,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadingLatestDaily:) name:@"LoadLatestDaily" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadingPreviousDaily:) name:@"LoadPreviousDaily" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateLatestDaily:) name:@"UpdateLatestDaily" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainScrollViewToTop:) name:@"TapStatusBar" object:nil];
         [self.viewmodel getLatestStories];
     }
     return self;
@@ -127,6 +128,10 @@
         [_mainTableView reloadData];
         [self setTopStoriesContent];
     }
+}
+
+- (void)mainScrollViewToTop:(NSNotification *)noti {
+    [_mainTableView setContentOffset:CGPointZero animated:YES];
 }
 
 #pragma mark - CarouseViewDelegate

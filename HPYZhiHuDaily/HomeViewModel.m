@@ -123,9 +123,6 @@
         
         SectionViewModel *newvm = [[SectionViewModel alloc] initWithDictionary:jsonDic];
         SectionViewModel *oldvm = _daysDataList[0];
-//        NSMutableArray* newArr = [NSMutableArray arrayWithArray:newvm.sectionDataSource];
-//        [newArr addObjectsFromArray:oldvm.sectionDataSource];
-//        newvm.sectionDataSource = newArr;
 
         if ([newvm.sectionTitleText isEqualToString:oldvm.sectionTitleText]) {
             NSArray* new = newvm.sectionDataSource;
